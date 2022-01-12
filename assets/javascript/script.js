@@ -2,7 +2,8 @@ var artist = "Jenny Hval";
 
 var requestUrl = "https://theaudiodb.com/api/v1/json/2/search.php?s=" + artist;
 
-var body = document.getElementById("main");
+var left = document.getElementById("left");
+var right = document.getElementById("right");
 fetch(requestUrl)
       .then(function (response) {
         if (response.status === 200) {
@@ -29,22 +30,22 @@ fetch(requestUrl)
 
         console.log(data.artists[0]);
      
-        body.appendChild(createImg(logo));
-        body.appendChild(createP(id));
-        body.appendChild(createP(name));
-        body.appendChild(createP(started));
-        body.appendChild(createP(place));
-        body.appendChild(createP(genre));
-        body.appendChild(createP(site));
+        left.appendChild(createImg(logo));
+        left.appendChild(createP(id));
+        left.appendChild(createP(name));
+        left.appendChild(createP(started));
+        left.appendChild(createP(place));
+        left.appendChild(createP(genre));
+        left.appendChild(createP(site));
 
 
 
-        body.appendChild(createP(bio));
+        right.appendChild(createP(bio));
 
-        body.appendChild(createImg(image[0]));
-        body.appendChild(createImg(image[1]));
-        body.appendChild(createImg(image[2]));
-        body.appendChild(createImg(image[3]));
+        left.appendChild(createImg(image[0]));
+        left.appendChild(createImg(image[1]));
+        left.appendChild(createImg(image[2]));
+        left.appendChild(createImg(image[3]));
 
 
 
@@ -59,6 +60,8 @@ fetch(requestUrl)
         function createImg(name) {
             let img = document.createElement('img');
             img.src = name;
+            // img.classList.add("one-half");
+            img.classList.add("column");
             return img;
         }
 

@@ -18,18 +18,24 @@ One paragraph of project description goes here.
 ## Authors
 
 * **Garrett Corbin** 
-* **Millard Chambers** 
-* **Samuel Lutz** 
+- [Link to Portfolio Site](https://antieatingactivist.github.io/portfolio/)
+- [Link to Github](https://github.com/antieatingactivist)
+- [Link to LinkedIn](https://www.linkedin.com/in/garrett-corbin-7a7777227/)
 
-- [Link to Portfolio Site](#)
-- [Link to Portfolio Site](#)
-- [Link to Portfolio Site](#)
-- [Link to Github]
-- [Link to Github]
+* **Millard Chambers** 
+- [Link to Portfolio Site](https://mchambersiv.github.io/html-portfolio-1/)
+- [Link to Github](https://github.com/MChambersIV)
+- [Link to LinkedIn]
+
+* **Samuel Lutz** 
 - [Link to Github](https://github.com/samuellutz)
-- [Link to LinkedIn]
 - [Link to LinkedIn](https://www.linkedin.com/in/samuel-lutz-77138020b/)
-- [Link to LinkedIn]
+- [Link to Portfolio Site](https://www.linkedin.com/in/samuel-lutz-77138020b/)
+
+
+
+
+
 
 
 ## License

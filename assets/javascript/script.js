@@ -47,6 +47,9 @@ fetch(requestUrl)
             data.artists[0].strArtistFanart2, 
             data.artists[0].strArtistFanart3,
             data.artists[0].strArtistFanart4,
+            data.artists[0].strArtistThumb,
+            data.artists[0].strArtistWideThumb,
+            data.artists[0].strArtistClearart,
         ];
         var logo = data.artists[0].strArtistBanner;
 
@@ -70,6 +73,8 @@ fetch(requestUrl)
         left.appendChild(createImg(image[1]));
         left.appendChild(createImg(image[2]));
         left.appendChild(createImg(image[3]));
+        left.appendChild(createImg(image[4]));
+        left.appendChild(createImg(image[5]));
 
 
 
@@ -78,14 +83,17 @@ fetch(requestUrl)
 
         function createP(title, name, size) {
             let p = document.createElement('p');
+            let nullP = document.createElement('span');
             p.textContent = title + name;
             p.classList.add(size);
-            return p;
+            if (name) return p;
+            else return nullP;
         }
 
         function createA(title, name, size) {
             let p = document.createElement('p');
             let a = document.createElement('a');
+            let nullA = document.createElement('span');
 
             p.textContent = title;
             a.href = "http://" + name;
@@ -95,13 +103,15 @@ fetch(requestUrl)
             p.appendChild(a);
 
             p.classList.add(size);
-            return p;
+            if (name) return p;
+            else return nullA;
         }
 
 
         function createImg(name) {
             let img = document.createElement('img');
             let nullImg = document.createElement('span');
+            
             img.src = name;
          
             // img.classList.add("column");

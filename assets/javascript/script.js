@@ -9,7 +9,7 @@ var concerts = document.getElementById("concerts");
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
-
+// The clearArtist function clears the page of dynamically created elements if a search has already been made
 function clearArtist() {
     if(left.innerHTML !== '' && right.innerHTML !== ''){
         left.innerHTML= '';
@@ -18,17 +18,17 @@ function clearArtist() {
         searchArtist;
     }
 }
-
+// The searchArtist function is the meat of the script, it performs both the work of fetching and parsing api data but also creating the html elements they'll populate.
 function searchArtist(event) {
     event.preventDefault();
 
-    var artist = bandInput.value;
+    var artist = bandInput.value; //This is the search form input that will be used to find the artist's data set
     if (artist) {
         findArtist(artist);
     }
 }
 function findArtist(artist) {
-    var requestUrl = "https://theaudiodb.com/api/v1/json/2/search.php?s=" + artist;
+    var requestUrl = "https://theaudiodb.com/api/v1/json/2/search.php?s=" + artist; //First api call that uses search form input to find data
 
 
     fetch(requestUrl)
@@ -42,10 +42,11 @@ function findArtist(artist) {
         .then(function (data) {
             var id = data.artists[0].idArtist;
 
-            var getAlbumAPI = "https://theaudiodb.com/api/v1/json/2/album.php?i=" + id;
+            var getAlbumAPI = "https://theaudiodb.com/api/v1/json/2/album.php?i=" + id; //While the first api call finds AudioDB's unique ID associated with the artist
+            //this api call uses that ID to find album information not available in the first api call.
 
 
-            
+            //These variables are assigned the key values in the api's so that they can populate the elements that will be created.
             var name = data.artists[0].strArtist;
             var started = data.artists[0].intBornYear;
             var bio = data.artists[0].strBiographyEN;

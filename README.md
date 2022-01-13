@@ -25,17 +25,12 @@ One paragraph of project description goes here.
 * **Millard Chambers** 
 - [Link to Portfolio Site](https://mchambersiv.github.io/html-portfolio-1/)
 - [Link to Github](https://github.com/MChambersIV)
-- [Link to LinkedIn]
+- [Link to LinkedIn](www.linkedin.com/in/millard-chambers-985448228)
 
 * **Samuel Lutz** 
 - [Link to Github](https://github.com/samuellutz)
 - [Link to LinkedIn](https://www.linkedin.com/in/samuel-lutz-77138020b/)
 - [Link to Portfolio Site](https://www.linkedin.com/in/samuel-lutz-77138020b/)
-
-
-
-
-
 
 
 ## License

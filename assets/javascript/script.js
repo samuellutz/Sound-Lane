@@ -1,9 +1,32 @@
-var artist = "Jenny Hval";
-
-var requestUrl = "https://theaudiodb.com/api/v1/json/2/search.php?s=" + artist;
-
+var bandSearch = document.getElementById("bandSearch")
+var bandInput = document.getElementById("bandinput")
 var left = document.getElementById("left");
 var right = document.getElementById("right");
+
+bandSearch.addEventListener('submit',searchArtist)
+bandSearch.addEventListener('submit',clearArtist)
+
+function clearArtist() {
+    if(left.innerHTML !== '' && right.innerHTML !== ''){
+    left.innerHTML= '';
+    right.innerHTML= '';
+    }else{
+    searchArtist
+    }
+}
+
+function searchArtist(event) {
+    event.preventDefault();
+
+    var artist = bandInput.value
+    if (artist) {
+    findArtist(artist)
+    }
+}
+var findArtist = function(artist) {
+var requestUrl = "https://theaudiodb.com/api/v1/json/2/search.php?s=" + artist;
+
+
 fetch(requestUrl)
       .then(function (response) {
         if (response.status === 200) {
@@ -66,3 +89,4 @@ fetch(requestUrl)
         }
 
       });
+    }

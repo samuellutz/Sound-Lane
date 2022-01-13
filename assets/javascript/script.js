@@ -14,6 +14,7 @@ function clearArtist() {
     if(left.innerHTML !== '' && right.innerHTML !== ''){
         left.innerHTML= '';
         right.innerHTML= '';
+        albumCarousel.refresh(true);
     } else {
         searchArtist;
     }
@@ -47,6 +48,7 @@ function findArtist(artist) {
 
             
             var name = data.artists[0].strArtist;
+        
             var started = data.artists[0].intBornYear;
             var bio = data.artists[0].strBiographyEN;
             var genre = data.artists[0].strGenre;
@@ -68,7 +70,7 @@ function findArtist(artist) {
             
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
-
+            left.appendChild(createImg(image[0]));
             left.appendChild(createP("Founded: ", started));
             left.appendChild(createP("Origin: ", place));
             left.appendChild(createP("Genre: ", genre));
@@ -77,13 +79,13 @@ function findArtist(artist) {
 
 
             right.appendChild(createP("", bio));
-            left.appendChild(createImg(logo));
-            left.appendChild(createImg(image[0]));
-            left.appendChild(createImg(image[1]));
-            left.appendChild(createImg(image[2]));
-            left.appendChild(createImg(image[3]));
-            left.appendChild(createImg(image[4]));
-            left.appendChild(createImg(image[5]));
+            // left.appendChild(createImg(logo));
+            // left.appendChild(createImg(image[0]));
+            // left.appendChild(createImg(image[1]));
+            // left.appendChild(createImg(image[2]));
+            // left.appendChild(createImg(image[3]));
+            // left.appendChild(createImg(image[4]));
+            // left.appendChild(createImg(image[5]));
 
 
 
@@ -163,6 +165,7 @@ function createImg(name) {
     let nullImg = document.createElement('span');
     
     img.src = name;
+    
 
     // img.classList.add("column");
 
@@ -193,13 +196,12 @@ var albumCarousel = new Glider(document.querySelector('.glider'), {
     duration: .5,
   
     // dot container element or selector
-    dots: 'CSS Selector',
+    dots: '.dots',
   
     // arrow container elements or selector
     arrows: {
-      prev: 'CSS Selector',
-      // may also pass element directly
-      next: document.querySelector('CSS Selector')
+        prev: '.glider-prev',
+        next: '.glider-next'
     },
   
     // allow mouse dragging

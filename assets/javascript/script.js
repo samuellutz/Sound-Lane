@@ -53,18 +53,19 @@ fetch(requestUrl)
 
         console.log(data.artists[0]);
      
+        
+        // left.appendChild(createP(id));
+        left.appendChild(createP("", name, "large"));
+
+        left.appendChild(createP("Founded: ", started));
+        left.appendChild(createP("Origin: ", place));
+        left.appendChild(createP("Genre: ", genre));
+        left.appendChild(createA("Website: ", site));
+
+
+
+        right.appendChild(createP("", bio));
         left.appendChild(createImg(logo));
-        left.appendChild(createP(id));
-        left.appendChild(createP(name));
-        left.appendChild(createP(started));
-        left.appendChild(createP(place));
-        left.appendChild(createP(genre));
-        left.appendChild(createP(site));
-
-
-
-        right.appendChild(createP(bio));
-
         left.appendChild(createImg(image[0]));
         left.appendChild(createImg(image[1]));
         left.appendChild(createImg(image[2]));
@@ -75,17 +76,38 @@ fetch(requestUrl)
 
 
 
-        function createP(name) {
+        function createP(title, name, size) {
             let p = document.createElement('p');
-            p.textContent = name;
+            p.textContent = title + name;
+            p.classList.add(size);
             return p;
         }
+
+        function createA(title, name, size) {
+            let p = document.createElement('p');
+            let a = document.createElement('a');
+
+            p.textContent = title;
+            a.href = "http://" + name;
+            a.rel = "noreferrer noopener";
+            a.target = "_blank";
+            a.textContent = "http://" + name;
+            p.appendChild(a);
+
+            p.classList.add(size);
+            return p;
+        }
+
+
         function createImg(name) {
             let img = document.createElement('img');
+            let nullImg = document.createElement('span');
             img.src = name;
-            // img.classList.add("one-half");
-            img.classList.add("column");
-            return img;
+         
+            // img.classList.add("column");
+
+            if (name) return img;
+            else return nullImg;  //if no image to display
         }
 
       });

@@ -35,3 +35,7 @@ div {
 .large {
     font-size: 5rem;
 }
+
+#albums {
+    border-radius: 0px;
+}

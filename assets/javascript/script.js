@@ -14,6 +14,7 @@ function clearArtist() {
     if(left.innerHTML !== '' && right.innerHTML !== ''){
         left.innerHTML= '';
         right.innerHTML= '';
+        
     } else {
         searchArtist;
     }
@@ -47,6 +48,7 @@ function findArtist(artist) {
 
             
             var name = data.artists[0].strArtist;
+        
             var started = data.artists[0].intBornYear;
             var bio = data.artists[0].strBiographyEN;
             var genre = data.artists[0].strGenre;
@@ -68,7 +70,7 @@ function findArtist(artist) {
             
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
-
+            left.appendChild(createImg(image[0]));
             left.appendChild(createP("Founded: ", started));
             left.appendChild(createP("Origin: ", place));
             left.appendChild(createP("Genre: ", genre));
@@ -77,13 +79,13 @@ function findArtist(artist) {
 
 
             right.appendChild(createP("", bio));
-            left.appendChild(createImg(logo));
-            left.appendChild(createImg(image[0]));
-            left.appendChild(createImg(image[1]));
-            left.appendChild(createImg(image[2]));
-            left.appendChild(createImg(image[3]));
-            left.appendChild(createImg(image[4]));
-            left.appendChild(createImg(image[5]));
+            // left.appendChild(createImg(logo));
+            // left.appendChild(createImg(image[0]));
+            // left.appendChild(createImg(image[1]));
+            // left.appendChild(createImg(image[2]));
+            // left.appendChild(createImg(image[3]));
+            // left.appendChild(createImg(image[4]));
+            // left.appendChild(createImg(image[5]));
 
 
 
@@ -163,6 +165,7 @@ function createImg(name) {
     let nullImg = document.createElement('span');
     
     img.src = name;
+    
 
     // img.classList.add("column");
 
@@ -174,59 +177,26 @@ function createImg(name) {
 
 var albumCarousel = new Glider(document.querySelector('.glider'), {
 
-    // `auto` allows automatic responsive
-    // width calculations
     slidesToShow: 'auto',
     slidesToScroll: 'auto',
-  
-    // should have been named `itemMinWidth`
-    // slides grow to fit the container viewport
-    // ignored unless `slidesToShow` is set to `auto`
     itemWidth: undefined,
-  
-    // if true, slides wont be resized to fit viewport
-    // requires `itemWidth` to be set
-    // * this may cause fractional slides
     exactWidth: false,
-  
-    // speed aggravator - higher is slower
     duration: .5,
-  
-    // dot container element or selector
-    dots: 'CSS Selector',
-  
-    // arrow container elements or selector
+    dots: '.dots',
     arrows: {
-      prev: 'CSS Selector',
-      // may also pass element directly
-      next: document.querySelector('CSS Selector')
+        prev: '.glider-prev',
+        next: '.glider-next'
     },
-  
-    // allow mouse dragging
     draggable: false,
-    // how much to scroll with each mouse delta
     dragVelocity: 3.3,
-  
-    // use any custom easing function
-    // compatible with most easing plugins
     easing: function (x, t, b, c, d) {
       return c*(t/=d)*t + b;
     },
-  
-    // event control
     scrollPropagate: false,
     eventPropagate: true,
-  
-    // Force centering slide after scroll event
     scrollLock: false,
-    // how long to wait after scroll event before locking
-    // if too low, it might interrupt normal scrolling
     scrollLockDelay: 150,
-  
-    // Force centering slide after resize event
     resizeLock: true,
-  
-    // Glider.js breakpoints are mobile-first
     responsive: [
       {
         breakpoint: 900,

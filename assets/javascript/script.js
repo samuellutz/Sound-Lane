@@ -2,6 +2,8 @@ var bandSearch = document.getElementById("bandSearch");
 var bandInput = document.getElementById("bandinput");
 var left = document.getElementById("left");
 var right = document.getElementById("right");
+var albums = document.getElementById("albums");
+
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
@@ -107,8 +109,11 @@ function findAlbums(ApiURL) {
             for (i in data.album) {
                 albumNames.push(data.album[i].strAlbum);
                 albumCovers.push(data.album[i].strAlbumThumb);
-                right.appendChild(createP("", albumNames[i]));
-                right.appendChild(createImg(albumCovers[i]));
+                
+                // albums.appendChild(createImg(albumCovers[i]));
+                // albums.appendChild(createP("", albumNames[i]));
+                albumCarousel.addItem(createImg(albumCovers[i]));
+
             }
             console.log(albumNames);
             console.log(albumCovers);
@@ -162,3 +167,80 @@ function createImg(name) {
     if (name) return img;
     else return nullImg;  //if no image to display
 }
+
+
+
+var albumCarousel = new Glider(document.querySelector('.glider'), {
+
+    // `auto` allows automatic responsive
+    // width calculations
+    slidesToShow: 'auto',
+    slidesToScroll: 'auto',
+  
+    // should have been named `itemMinWidth`
+    // slides grow to fit the container viewport
+    // ignored unless `slidesToShow` is set to `auto`
+    itemWidth: undefined,
+  
+    // if true, slides wont be resized to fit viewport
+    // requires `itemWidth` to be set
+    // * this may cause fractional slides
+    exactWidth: false,
+  
+    // speed aggravator - higher is slower
+    duration: .5,
+  
+    // dot container element or selector
+    dots: 'CSS Selector',
+  
+    // arrow container elements or selector
+    arrows: {
+      prev: 'CSS Selector',
+      // may also pass element directly
+      next: document.querySelector('CSS Selector')
+    },
+  
+    // allow mouse dragging
+    draggable: false,
+    // how much to scroll with each mouse delta
+    dragVelocity: 3.3,
+  
+    // use any custom easing function
+    // compatible with most easing plugins
+    easing: function (x, t, b, c, d) {
+      return c*(t/=d)*t + b;
+    },
+  
+    // event control
+    scrollPropagate: false,
+    eventPropagate: true,
+  
+    // Force centering slide after scroll event
+    scrollLock: false,
+    // how long to wait after scroll event before locking
+    // if too low, it might interrupt normal scrolling
+    scrollLockDelay: 150,
+  
+    // Force centering slide after resize event
+    resizeLock: true,
+  
+    // Glider.js breakpoints are mobile-first
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3
+        }
+      }
+    ]
+  });
+
+  

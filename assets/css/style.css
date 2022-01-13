@@ -7,15 +7,31 @@ form {
     color: black;
 }
 
-
+img {
+    width: 100%;
+}
 
 div { 
     
     margin: 0px;
     border-radius: 20px;
+    /* background-color: #00338844; */
+}
+
+/* p {
+    display: inline;
+} */
+
+.container {
+    padding: 20px;
+    background-color: #00338844;
 }
 
 .row {
     padding: 20px;
-    background-color: #00338844;
+    /* background-color: #00338844; */
+}
+
+.large {
+    font-size: 5rem;
 }

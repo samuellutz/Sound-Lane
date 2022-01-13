@@ -3,6 +3,8 @@ var bandInput = document.getElementById("bandinput");
 var left = document.getElementById("left");
 var right = document.getElementById("right");
 var albums = document.getElementById("albums");
+var concerts = document.getElementById("concerts");
+
 
 
 bandSearch.addEventListener('submit',searchArtist);

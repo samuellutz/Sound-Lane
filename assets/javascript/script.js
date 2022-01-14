@@ -122,7 +122,7 @@ function findAlbums(ApiURL) {
                 
                 // albums.appendChild(createImg(albumCovers[i]));
                 // albums.appendChild(createP("", albumNames[i]));
-                albumCarousel.addItem(createImg(albumCovers[i]));
+                albumCarousel.addItem(createImg(albumNames[i], albumCovers[i]));
 
             }
             console.log(albumNames);
@@ -166,16 +166,19 @@ function createA(title, name, size) {
 }
 
 
-function createImg(name) {
+function createImg(title, imgSrc) {
+    let div = document.createElement('div');
     let img = document.createElement('img');
+    let span = document.createElement('span');
     let nullImg = document.createElement('span');
-    
-    img.src = name;
-    
+    span.textContent = title;
+    img.src = imgSrc;
+    div.appendChild(img);
+    div.appendChild(span);
 
     // img.classList.add("column");
 
-    if (name) return img;
+    if (imgSrc) return div;
     else return nullImg;  //if no image to display
 }
 

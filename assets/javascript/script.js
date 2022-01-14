@@ -11,13 +11,9 @@ var photosCarousel;
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
-<<<<<<< HEAD
-// The clearArtist function clears the page of dynamically created elements if a search has already been made
-=======
 
+topArtist()
 
-
->>>>>>> dd1b249b259ef6ef6d616dad033fdebcdd3d6ceb
 function clearArtist() {
     if(left.innerHTML !== '' && right.innerHTML !== ''){
         left.innerHTML= '';
@@ -152,6 +148,63 @@ function findAlbums(ApiURL) {
             
         });
 
+}
+
+function topArtist() {
+    var requestTop = "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=95c7da27b614e57e3a2f50c72aacec42&format=json"
+    fetch(requestTop)
+    .then(function (response) {
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            return false;
+        }
+    })
+    .then(function (data) {
+        var Artists = "The Current Top 10 Artists (Served via Last.fm) "
+
+        var idArtist0 = data.artists.artist[0].name + " has " + data.artists.artist[0].playcount + " plays and " + data.artists.artist[0].listeners + " listeners!";
+
+        var idArtist1 = data.artists.artist[1].name + " has " + data.artists.artist[1].playcount + " plays and " + data.artists.artist[1].listeners + " listeners!";
+
+        var idArtist2 = data.artists.artist[2].name + " has " + data.artists.artist[2].playcount + " plays and " + data.artists.artist[2].listeners + " listeners!";
+
+        var idArtist3 = data.artists.artist[3].name + " has " + data.artists.artist[3].playcount + " plays and " + data.artists.artist[3].listeners + " listeners!";
+
+        var idArtist4 = data.artists.artist[4].name + " has " + data.artists.artist[4].playcount + " plays and " + data.artists.artist[4].listeners + " listeners!";
+
+        var idArtist5 = data.artists.artist[5].name + " has " + data.artists.artist[5].playcount + " plays and " + data.artists.artist[5].listeners + " listeners!";
+
+        var idArtist6 = data.artists.artist[6].name + " has " + data.artists.artist[6].playcount + " plays and " + data.artists.artist[6].listeners + " listeners!";
+
+        var idArtist7 = data.artists.artist[7].name + " has " + data.artists.artist[7].playcount + " plays and " + data.artists.artist[7].listeners + " listeners!";
+
+        var idArtist8 = data.artists.artist[8].name + " has " + data.artists.artist[8].playcount + " plays and " + data.artists.artist[8].listeners + " listeners!";
+
+        var idArtist9 = data.artists.artist[9].name + " has " + data.artists.artist[9].playcount + " plays and " + data.artists.artist[9].listeners + " listeners!";
+
+        topArtistsLeft.appendChild(createP("", Artists, "Large"));
+
+        topArtistsLeft.appendChild(createP("", idArtist0, "small"));
+
+        topArtistsLeft.appendChild(createP("", idArtist1, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist2, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist3, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist4, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist5, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist6, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist7, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist8, "small"));
+        
+        topArtistsLeft.appendChild(createP("", idArtist9, "small"));
+    });
 }
 // local storage
 // function save() {

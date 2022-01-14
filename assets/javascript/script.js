@@ -2,10 +2,11 @@ var bandSearch = document.getElementById("bandSearch");
 var bandInput = document.getElementById("bandinput");
 var left = document.getElementById("left");
 var right = document.getElementById("right");
-var albums = document.getElementById("albums");
 var concerts = document.getElementById("concerts");
 var albumsEl = document.getElementById('albums');
+var photosEl = document.getElementById('photos');
 var albumCarousel;
+var photosCarousel;
 
 
 bandSearch.addEventListener('submit',searchArtist);
@@ -18,7 +19,8 @@ function clearArtist() {
         left.innerHTML= '';
         right.innerHTML= '';
         albumsEl.innerHTML= '';
-        albumCarousel.destroy();
+        if (albumCarousel) albumCarousel.destroy();
+        if (photosCarousel) photosCarousel.destroy();
         
     } else {
         searchArtist;
@@ -93,6 +95,12 @@ function findArtist(artist) {
             // left.appendChild(createImg(image[4]));
             // left.appendChild(createImg(image[5]));
 
+            createPhotosCarousel();
+            for (i in image) {
+                photosCarousel.addItem(createImg("", image[i]));
+            }
+            
+            
 
 
             findAlbums(getAlbumAPI);
@@ -114,14 +122,14 @@ function findAlbums(ApiURL) {
         })
         .then(function (data) {
             createAlbumCarousel();
+            
             var albumNames = [];
             var albumCovers = [];
             for (i in data.album) {
                 albumNames.push(data.album[i].strAlbum);
                 albumCovers.push(data.album[i].strAlbumThumb);
                 
-                // albums.appendChild(createImg(albumCovers[i]));
-                // albums.appendChild(createP("", albumNames[i]));
+                
                 albumCarousel.addItem(createImg(albumNames[i], albumCovers[i]));
 
             }
@@ -187,6 +195,60 @@ function createImg(title, imgSrc) {
     else if (imgSrc) return img;
     else return nullImg;  //if no image to display
 }
+
+
+function createPhotosCarousel() {
+    var label = document.createElement('span');
+    var carouselContainer = document.createElement('div');
+    var leftButton = document.createElement('button');
+    var rightButton = document.createElement('button');
+    var dots = document.createElement('div');
+
+    label.textContent = "Photos";
+    carouselContainer.classList.add('glider');
+    leftButton.classList.add('glider-prev');
+    leftButton.ariaLabel = 'Previous';
+    leftButton.textContent = '«';
+    rightButton.classList.add('glider-next');
+    rightButton.ariaLabel = 'Next';
+    rightButton.textContent = '»';
+    dots.classList.add('dots');
+    dots.setAttribute('role', 'tablist');
+    photosEl.appendChild(label);
+    photosEl.appendChild(carouselContainer);
+    photosEl.appendChild(leftButton);
+    photosEl.appendChild(rightButton);
+    photosEl.appendChild(dots);
+  
+    photosCarousel = new Glider(document.querySelector('.glider'), {
+
+        slidesToShow: 1,
+        // slidesToScroll: 'auto',
+        itemWidth: undefined,
+        exactWidth: false,
+        duration: .5,
+        dots: '.dots',
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        },
+        draggable: false,
+        dragVelocity: 3.3,
+        easing: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+        },
+        scrollPropagate: false,
+        eventPropagate: true,
+        scrollLock: false,
+        scrollLockDelay: 150,
+        resizeLock: true,
+      
+    });
+
+
+}
+
+
 
 
 function createAlbumCarousel() {

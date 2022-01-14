@@ -4,16 +4,21 @@ var left = document.getElementById("left");
 var right = document.getElementById("right");
 var albums = document.getElementById("albums");
 var concerts = document.getElementById("concerts");
-
+var albumsEl = document.getElementById('albums');
+var albumCarousel;
 
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
 
+
+
 function clearArtist() {
     if(left.innerHTML !== '' && right.innerHTML !== ''){
         left.innerHTML= '';
         right.innerHTML= '';
+        albumsEl.innerHTML= '';
+        albumCarousel.destroy();
         
     } else {
         searchArtist;
@@ -48,7 +53,8 @@ function findArtist(artist) {
 
             
             var name = data.artists[0].strArtist;
-        
+            
+
             var started = data.artists[0].intBornYear;
             var bio = data.artists[0].strBiographyEN;
             var genre = data.artists[0].strGenre;
@@ -107,7 +113,7 @@ function findAlbums(ApiURL) {
             }
         })
         .then(function (data) {
-
+            createAlbumCarousel();
             var albumNames = [];
             var albumCovers = [];
             for (i in data.album) {
@@ -174,45 +180,66 @@ function createImg(name) {
 }
 
 
+function createAlbumCarousel() {
+    var carouselContainer = document.createElement('div');
+    var leftButton = document.createElement('button');
+    var rightButton = document.createElement('button');
+    var dots = document.createElement('div');
 
-var albumCarousel = new Glider(document.querySelector('.glider'), {
+    carouselContainer.classList.add('glider');
+    leftButton.classList.add('glider-prev');
+    leftButton.ariaLabel = 'Previous';
+    leftButton.textContent = '«';
+    rightButton.classList.add('glider-next');
+    rightButton.ariaLabel = 'Next';
+    rightButton.textContent = '»';
+    dots.classList.add('dots');
+    dots.setAttribute('role', 'tablist');
+    albumsEl.appendChild(carouselContainer);
+    albumsEl.appendChild(leftButton);
+    albumsEl.appendChild(rightButton);
+    albumsEl.appendChild(dots);
+  
+    albumCarousel = new Glider(document.querySelector('.glider'), {
 
-    slidesToShow: 'auto',
-    slidesToScroll: 'auto',
-    itemWidth: undefined,
-    exactWidth: false,
-    duration: .5,
-    dots: '.dots',
-    arrows: {
-        prev: '.glider-prev',
-        next: '.glider-next'
-    },
-    draggable: false,
-    dragVelocity: 3.3,
-    easing: function (x, t, b, c, d) {
-      return c*(t/=d)*t + b;
-    },
-    scrollPropagate: false,
-    eventPropagate: true,
-    scrollLock: false,
-    scrollLockDelay: 150,
-    resizeLock: true,
-    responsive: [
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2
+        slidesToShow: 'auto',
+        slidesToScroll: 'auto',
+        itemWidth: undefined,
+        exactWidth: false,
+        duration: .5,
+        dots: '.dots',
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        },
+        draggable: false,
+        dragVelocity: 3.3,
+        easing: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+        },
+        scrollPropagate: false,
+        eventPropagate: true,
+        scrollLock: false,
+        scrollLockDelay: 150,
+        resizeLock: true,
+        responsive: [
+        {
+            breakpoint: 900,
+            settings: {
+            slidesToShow: 4,
+            slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 575,
+            settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
+            }
         }
-      },
-      {
-        breakpoint: 575,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3
-        }
-      }
-    ]
-  });
+        ]
+    });
 
+
+}
   

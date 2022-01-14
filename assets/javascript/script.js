@@ -19,6 +19,7 @@ function clearArtist() {
         left.innerHTML= '';
         right.innerHTML= '';
         albumsEl.innerHTML= '';
+        photosEl.innerHTML= '';
         if (albumCarousel) albumCarousel.destroy();
         if (photosCarousel) photosCarousel.destroy();
         
@@ -97,7 +98,7 @@ function findArtist(artist) {
 
             createPhotosCarousel();
             for (i in image) {
-                photosCarousel.addItem(createImg("", image[i]));
+                if (image[i])   photosCarousel.addItem(createImg("", image[i]));
             }
             
             
@@ -193,7 +194,7 @@ function createImg(title, imgSrc) {
         return div;
     }
     else if (imgSrc) return img;
-    else return nullImg;  //if no image to display
+    else return false;  //if no image to display
 }
 
 

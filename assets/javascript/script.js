@@ -6,7 +6,7 @@ var albums = document.getElementById("albums");
 var concerts = document.getElementById("concerts");
 var bandbtn = document.getElementById("bandbtn");
 var data = [];
-
+var name = [];
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
@@ -66,11 +66,12 @@ function findArtist(artist) {
 
 
             console.log(data.artists[0]);
-            function savedata(artist){
 
-            localStorage.setItem("data", JSON.stringify(artist));
+            function savedata(artist){
+                localStorage.setItem("data", JSON.stringify(artist));
             }
-           savedata
+           savedata(name); 
+
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
 

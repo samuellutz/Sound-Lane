@@ -76,7 +76,7 @@ function findArtist(artist) {
             
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
-            left.appendChild(createImg(image[0]));
+            left.appendChild(createImg("", image[0]));
             left.appendChild(createP("Founded: ", started));
             left.appendChild(createP("Origin: ", place));
             left.appendChild(createP("Genre: ", genre));
@@ -172,23 +172,31 @@ function createImg(title, imgSrc) {
     let span = document.createElement('span');
     let nullImg = document.createElement('span');
     span.textContent = title;
+    
     img.src = imgSrc;
+    
     div.appendChild(img);
     div.appendChild(span);
 
     // img.classList.add("column");
-
-    if (imgSrc) return div;
+    if (title && imgSrc) return div;
+    else if (title && !imgSrc) {
+        img.src = "./assets/images/missingart.png";
+        return div;
+    }
+    else if (imgSrc) return img;
     else return nullImg;  //if no image to display
 }
 
 
 function createAlbumCarousel() {
+    var label = document.createElement('span');
     var carouselContainer = document.createElement('div');
     var leftButton = document.createElement('button');
     var rightButton = document.createElement('button');
     var dots = document.createElement('div');
 
+    label.textContent = "Discography";
     carouselContainer.classList.add('glider');
     leftButton.classList.add('glider-prev');
     leftButton.ariaLabel = 'Previous';
@@ -198,6 +206,7 @@ function createAlbumCarousel() {
     rightButton.textContent = '»';
     dots.classList.add('dots');
     dots.setAttribute('role', 'tablist');
+    albumsEl.appendChild(label);
     albumsEl.appendChild(carouselContainer);
     albumsEl.appendChild(leftButton);
     albumsEl.appendChild(rightButton);

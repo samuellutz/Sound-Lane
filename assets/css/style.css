@@ -15,7 +15,7 @@ img {
 div { 
     
     margin: 0px;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     /* background-color: #00338844; */
 }
 
@@ -26,6 +26,7 @@ div {
 .container {
     padding: 20px;
     background-color: #00338844;
+    border-radius: 20px;
 }
 
 .row {
@@ -37,11 +38,10 @@ div {
     font-size: 5rem;
 }
 
-#albums {
-    border-radius: 0px;
-}
+
 
 .glider-slide  {
     text-align: center;
+    padding: 0 10px 0 10px;
 
 }

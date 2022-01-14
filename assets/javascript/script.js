@@ -4,8 +4,8 @@ var left = document.getElementById("left");
 var right = document.getElementById("right");
 var albums = document.getElementById("albums");
 var concerts = document.getElementById("concerts");
-var bandbtn = document.getElementById("bandbtn")
-
+var bandbtn = document.getElementById("bandbtn");
+const data = [];
 
 
 bandSearch.addEventListener('submit',searchArtist);
@@ -67,19 +67,9 @@ function findArtist(artist) {
 
             console.log(data.artists[0]);
 
-           function save() {
-               var newdata = bandInput().value;
-               if (localStorage.getItem('data') == null){
-                   localStorage.setItem('data', '[]');
-           }
-
-               var olddata = json.parse(localStorage.getItem('data'));
-               olddata.push(newdata);
-               localStorage.setItem('data', json.stringfy(olddata));
-              
-           }
-            save
-            console.log(localStorage)
+            localStorage.setItem("data", JSON.stringify(artist));
+        
+           
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
 
@@ -140,9 +130,21 @@ function findAlbums(ApiURL) {
         });
 
 }
+// local storage
+// function save() {
+//     var newdata = bandInput.value();
+//     console.log(newdata);
+//     if (localStorage.getItem('data') == null){
+//         localStorage.setItem('data', '[]');
+// }
 
-
-
+//     var olddata = json.parse(localStorage.getItem('data'));
+//     olddata.push(newdata);
+//     localStorage.setItem('data', json.stringfy(olddata));
+   
+// }
+//  save
+//  console.log(localStorage)
 
 function createP(title, name, size) {
     let p = document.createElement('p');

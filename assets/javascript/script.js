@@ -66,11 +66,20 @@ function findArtist(artist) {
 
 
             console.log(data.artists[0]);
-        
-            var addArtist = [];
-                localStorage.setItem("addartist", artist);
-                console.log(localStorage);
-            
+
+           function save() {
+               var newdata = bandInput().value;
+               if (localStorage.getItem('data') == null){
+                   localStorage.setItem('data', '[]');
+           }
+
+               var olddata = json.parse(localStorage.getItem('data'));
+               olddata.push(newdata);
+               localStorage.setItem('data', json.stringfy(olddata));
+              
+           }
+            save
+            console.log(localStorage)
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
 
@@ -121,11 +130,11 @@ function findAlbums(ApiURL) {
                 albumCarousel.addItem(createImg(albumCovers[i]));
 
             }
-            console.log(albumNames);
-            console.log(albumCovers);
+            // console.log(albumNames);
+            // console.log(albumCovers);
 
 
-            console.log(data);
+            // console.log(data);
           
             
         });

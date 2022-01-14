@@ -48,6 +48,7 @@ function findArtist(artist) {
 
             
             var name = data.artists[0].strArtist;
+            // if (name) addArtist.push(name);
             var started = data.artists[0].intBornYear;
             var bio = data.artists[0].strBiographyEN;
             var genre = data.artists[0].strGenre;
@@ -66,6 +67,9 @@ function findArtist(artist) {
 
             console.log(data.artists[0]);
         
+            var addArtist = [];
+                localStorage.setItem("addartist", artist);
+                console.log(localStorage);
             
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
@@ -89,7 +93,6 @@ function findArtist(artist) {
 
 
             findAlbums(getAlbumAPI);
-
 
             
 
@@ -248,42 +251,5 @@ var albumCarousel = new Glider(document.querySelector('.glider'), {
 
 
 //local storage to add buttons from previous search 
-  function addArtist(artist){
-    container.push(artist);
-      var button = $("<button>");
-      button.text(artist);
-      button.addClass("btn btn-secondary bandSearch w-100 border-top border-dark");
-      button.attr("type", "button");
-      bandbtn.append(button);
-      for(var i = 0; i < container.length; i++){
-      localStorage.setItem(i, container[i]);
-    }
-    localStorage.setItem("artist", JSON.stringify(value));
-  }
-// function to creat buttons
-  bandbtn.click("click", "button", function (event) {
-    save = true;
-    event.preventDefault();
-    var btnText = $(this).text();
-    console.log("btn text: " + btnText);
-    searchArtist(btnText);
-  });
-
-  function pageOpen() {
-    var num = localStorage.getItem("artist");
-    for (var i = 0; i < num; i++) {
-        JSON.parse(localStorage.getItem("artist"));
-    }
-    if (container.length > 0) {
-      searchArtist(container[0]);
-    }
-    for (var i = 0; i < container.length; i++) {
-      var ogButton = $("<button>");
-      ogButton.text(container[i]);
-      ogButton.addClass("btn btn-secondary bandSearch w-100 border-top border-dark");
-      ogButton.attr("type", "button");
-      bandbtn.append(ogButton);
-    }
-    pageOpen();
-  }
  
+// function to creat buttons

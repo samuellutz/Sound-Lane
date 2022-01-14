@@ -40,10 +40,19 @@ div {
     font-size: 5rem;
 }
 
+<<<<<<< HEAD
+#albums {
+    border-radius: 0px;
+}
+
+h1 {
+    padding-left: 17px;
+=======
 
 
 .glider-slide  {
     text-align: center;
     padding: 0 10px 0 10px;
 
+>>>>>>> dd1b249b259ef6ef6d616dad033fdebcdd3d6ceb
 }

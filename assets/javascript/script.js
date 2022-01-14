@@ -232,8 +232,8 @@ function createPhotosCarousel() {
             prev: '.glider-prev',
             next: '.glider-next'
         },
-        draggable: false,
-        dragVelocity: 3.3,
+        draggable: true,
+        dragVelocity: 1,
         easing: function (x, t, b, c, d) {
         return c*(t/=d)*t + b;
         },
@@ -286,8 +286,8 @@ function createAlbumCarousel() {
             prev: '.glider-prev',
             next: '.glider-next'
         },
-        draggable: false,
-        dragVelocity: 3.3,
+        draggable: true,
+        dragVelocity: 1, 
         easing: function (x, t, b, c, d) {
         return c*(t/=d)*t + b;
         },

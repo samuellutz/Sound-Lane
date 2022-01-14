@@ -2,18 +2,25 @@ var bandSearch = document.getElementById("bandSearch");
 var bandInput = document.getElementById("bandinput");
 var left = document.getElementById("left");
 var right = document.getElementById("right");
-var albums = document.getElementById("albums");
 var concerts = document.getElementById("concerts");
-
+var albumsEl = document.getElementById('albums');
+var photosEl = document.getElementById('photos');
+var albumCarousel;
+var photosCarousel;
 
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
 
+
+
 function clearArtist() {
     if(left.innerHTML !== '' && right.innerHTML !== ''){
         left.innerHTML= '';
         right.innerHTML= '';
+        albumsEl.innerHTML= '';
+        if (albumCarousel) albumCarousel.destroy();
+        if (photosCarousel) photosCarousel.destroy();
         
     } else {
         searchArtist;
@@ -48,7 +55,8 @@ function findArtist(artist) {
 
             
             var name = data.artists[0].strArtist;
-        
+            
+
             var started = data.artists[0].intBornYear;
             var bio = data.artists[0].strBiographyEN;
             var genre = data.artists[0].strGenre;
@@ -70,7 +78,7 @@ function findArtist(artist) {
             
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
-            left.appendChild(createImg(image[0]));
+            left.appendChild(createImg("", image[0]));
             left.appendChild(createP("Founded: ", started));
             left.appendChild(createP("Origin: ", place));
             left.appendChild(createP("Genre: ", genre));
@@ -87,6 +95,12 @@ function findArtist(artist) {
             // left.appendChild(createImg(image[4]));
             // left.appendChild(createImg(image[5]));
 
+            createPhotosCarousel();
+            for (i in image) {
+                photosCarousel.addItem(createImg("", image[i]));
+            }
+            
+            
 
 
             findAlbums(getAlbumAPI);
@@ -107,16 +121,16 @@ function findAlbums(ApiURL) {
             }
         })
         .then(function (data) {
-
+            createAlbumCarousel();
+            
             var albumNames = [];
             var albumCovers = [];
             for (i in data.album) {
                 albumNames.push(data.album[i].strAlbum);
                 albumCovers.push(data.album[i].strAlbumThumb);
                 
-                // albums.appendChild(createImg(albumCovers[i]));
-                // albums.appendChild(createP("", albumNames[i]));
-                albumCarousel.addItem(createImg(albumCovers[i]));
+                
+                albumCarousel.addItem(createImg(albumNames[i], albumCovers[i]));
 
             }
             console.log(albumNames);
@@ -160,59 +174,146 @@ function createA(title, name, size) {
 }
 
 
-function createImg(name) {
+function createImg(title, imgSrc) {
+    let div = document.createElement('div');
     let img = document.createElement('img');
+    let span = document.createElement('span');
     let nullImg = document.createElement('span');
+    span.textContent = title;
     
-    img.src = name;
+    img.src = imgSrc;
     
+    div.appendChild(img);
+    div.appendChild(span);
 
     // img.classList.add("column");
-
-    if (name) return img;
+    if (title && imgSrc) return div;
+    else if (title && !imgSrc) {
+        img.src = "./assets/images/missingart.png";
+        return div;
+    }
+    else if (imgSrc) return img;
     else return nullImg;  //if no image to display
 }
 
 
+function createPhotosCarousel() {
+    var label = document.createElement('span');
+    var carouselContainer = document.createElement('div');
+    var leftButton = document.createElement('button');
+    var rightButton = document.createElement('button');
+    var dots = document.createElement('div');
 
-var albumCarousel = new Glider(document.querySelector('.glider'), {
+    label.textContent = "Photos";
+    carouselContainer.classList.add('glider');
+    leftButton.classList.add('glider-prev');
+    leftButton.ariaLabel = 'Previous';
+    leftButton.textContent = '«';
+    rightButton.classList.add('glider-next');
+    rightButton.ariaLabel = 'Next';
+    rightButton.textContent = '»';
+    dots.classList.add('dots');
+    dots.setAttribute('role', 'tablist');
+    photosEl.appendChild(label);
+    photosEl.appendChild(carouselContainer);
+    photosEl.appendChild(leftButton);
+    photosEl.appendChild(rightButton);
+    photosEl.appendChild(dots);
+  
+    photosCarousel = new Glider(document.querySelector('.glider'), {
 
-    slidesToShow: 'auto',
-    slidesToScroll: 'auto',
-    itemWidth: undefined,
-    exactWidth: false,
-    duration: .5,
-    dots: '.dots',
-    arrows: {
-        prev: '.glider-prev',
-        next: '.glider-next'
-    },
-    draggable: false,
-    dragVelocity: 3.3,
-    easing: function (x, t, b, c, d) {
-      return c*(t/=d)*t + b;
-    },
-    scrollPropagate: false,
-    eventPropagate: true,
-    scrollLock: false,
-    scrollLockDelay: 150,
-    resizeLock: true,
-    responsive: [
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2
+        slidesToShow: 1,
+        // slidesToScroll: 'auto',
+        itemWidth: undefined,
+        exactWidth: false,
+        duration: .5,
+        dots: '.dots',
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        },
+        draggable: true,
+        dragVelocity: 1,
+        easing: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+        },
+        scrollPropagate: false,
+        eventPropagate: true,
+        scrollLock: false,
+        scrollLockDelay: 150,
+        resizeLock: true,
+      
+    });
+
+
+}
+
+
+
+
+function createAlbumCarousel() {
+    var label = document.createElement('span');
+    var carouselContainer = document.createElement('div');
+    var leftButton = document.createElement('button');
+    var rightButton = document.createElement('button');
+    var dots = document.createElement('div');
+
+    label.textContent = "Discography";
+    carouselContainer.classList.add('glider');
+    leftButton.classList.add('glider-prev');
+    leftButton.ariaLabel = 'Previous';
+    leftButton.textContent = '«';
+    rightButton.classList.add('glider-next');
+    rightButton.ariaLabel = 'Next';
+    rightButton.textContent = '»';
+    dots.classList.add('dots');
+    dots.setAttribute('role', 'tablist');
+    albumsEl.appendChild(label);
+    albumsEl.appendChild(carouselContainer);
+    albumsEl.appendChild(leftButton);
+    albumsEl.appendChild(rightButton);
+    albumsEl.appendChild(dots);
+  
+    albumCarousel = new Glider(document.querySelector('.glider'), {
+
+        slidesToShow: 'auto',
+        slidesToScroll: 'auto',
+        itemWidth: undefined,
+        exactWidth: false,
+        duration: .5,
+        dots: '.dots',
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        },
+        draggable: true,
+        dragVelocity: 1, 
+        easing: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+        },
+        scrollPropagate: false,
+        eventPropagate: true,
+        scrollLock: false,
+        scrollLockDelay: 150,
+        resizeLock: true,
+        responsive: [
+        {
+            breakpoint: 900,
+            settings: {
+            slidesToShow: 4,
+            slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 575,
+            settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
+            }
         }
-      },
-      {
-        breakpoint: 575,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3
-        }
-      }
-    ]
-  });
+        ]
+    });
 
+
+}
   

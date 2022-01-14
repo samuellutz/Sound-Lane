@@ -75,8 +75,12 @@ function findArtist(artist) {
 
 
             console.log(data.artists[0]);
-        
-            
+
+            function savedata(artist){
+                localStorage.setItem("data", JSON.stringify(artist));
+            }
+           savedata(name); 
+
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));
             left.appendChild(createImg("", image[0]));
@@ -84,8 +88,9 @@ function findArtist(artist) {
             left.appendChild(createP("Origin: ", place));
             left.appendChild(createP("Genre: ", genre));
             left.appendChild(createA("Website: ", site));
-
-
+            left.appendChild(createA("youtube: ","www.youtube.com/results?search_query=" + artist))
+            left.appendChild(createA("Spotify: ", "open.spotify.com/search/"+ artist))
+            left.appendChild(createA("Pandora: ", "www.pandora.com/search/"+ artist + "/all"))
 
             right.appendChild(createP("", bio));
             // left.appendChild(createImg(logo));
@@ -105,7 +110,6 @@ function findArtist(artist) {
 
 
             findAlbums(getAlbumAPI);
-
 
             
 
@@ -134,19 +138,31 @@ function findAlbums(ApiURL) {
                 albumCarousel.addItem(createImg(albumNames[i], albumCovers[i]));
 
             }
-            console.log(albumNames);
-            console.log(albumCovers);
+            // console.log(albumNames);
+            // console.log(albumCovers);
 
 
-            console.log(data);
+            // console.log(data);
           
             
         });
 
 }
+// local storage
+// function save() {
+//     var newdata = bandInput.value();
+//     console.log(newdata);
+//     if (localStorage.getItem('data') == null){
+//         localStorage.setItem('data', '[]');
+// }
 
-
-
+//     var olddata = json.parse(localStorage.getItem('data'));
+//     olddata.push(newdata);
+//     localStorage.setItem('data', json.stringfy(olddata));
+   
+// }
+//  save
+ console.log(localStorage)
 
 function createP(title, name, size) {
     let p = document.createElement('p');

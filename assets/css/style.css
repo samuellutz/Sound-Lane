@@ -21,14 +21,20 @@ div {
     /* background-color: #00338844; */
 }
 
+a {
+    color: #8283ac;
+}
+
 /* p {
     display: inline;
 } */
 
 .container {
     padding: 20px;
-    background-color: #00338844;
+    /* background-color: #00338844; */
+    background-image: linear-gradient(#000e25, #000d24);
     border-radius: 20px;
+    border: 1px solid #6e6e6e1e;
 }
 
 .row {

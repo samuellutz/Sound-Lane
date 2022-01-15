@@ -21,14 +21,20 @@ div {
     /* background-color: #00338844; */
 }
 
+a {
+    color: #8283ac;
+}
+
 /* p {
     display: inline;
 } */
 
 .container {
     padding: 20px;
-    background-color: #00338844;
+    /* background-color: #00338844; */
+    background-image: linear-gradient(#000e25, #000d24);
     border-radius: 20px;
+    border: 1px solid #6e6e6e1e;
 }
 
 .row {
@@ -39,20 +45,31 @@ div {
 .large {
     font-size: 5rem;
 }
+.medium {
+    font-size: 2.3rem;
+}
 
-<<<<<<< HEAD
 #albums {
     border-radius: 0px;
 }
 
 h1 {
     padding-left: 17px;
-=======
+}
 
 
 .glider-slide  {
     text-align: center;
     padding: 0 10px 0 10px;
 
->>>>>>> dd1b249b259ef6ef6d616dad033fdebcdd3d6ceb
+
 }
+
+
+#previous-searches p, #albums p {
+
+    margin: 0;
+    /* background-color: #00338844; */
+
+}
+

@@ -11,16 +11,18 @@ var photosCarousel;
 var previousSearches = [];
 
 
+
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
 previousSearchesEl.addEventListener('click', function(e) {
-    console.log(e.target);
+    clearArtist();
+    findArtist(e.target.textContent);
 });
 
 if (localStorage.getItem('previousSearches')) {
     previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
     for (i of previousSearches) {
-        previousSearchesEl.appendChild(createImg(i, ''));
+        previousSearchesEl.appendChild(createP('', i));
         
     }
     
@@ -113,13 +115,7 @@ function findArtist(artist) {
             left.appendChild(createA("Pandora: ", "www.pandora.com/search/"+ artist + "/all"))
 
             right.appendChild(createP("", bio));
-            // left.appendChild(createImg(logo));
-            // left.appendChild(createImg(image[0]));
-            // left.appendChild(createImg(image[1]));
-            // left.appendChild(createImg(image[2]));
-            // left.appendChild(createImg(image[3]));
-            // left.appendChild(createImg(image[4]));
-            // left.appendChild(createImg(image[5]));
+       
 
             createPhotosCarousel();
             for (i in image) {
@@ -172,74 +168,61 @@ function findAlbums(ApiURL) {
 function topArtist() {
     var requestTop = "https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=95c7da27b614e57e3a2f50c72aacec42&format=json"
     fetch(requestTop)
-    .then(function (response) {
-        if (response.status === 200) {
-            return response.json();
-        } else {
-            return false;
-        }
-    })
-    .then(function (data) {
-        var Artists = "The Current Top 10 Artists (Served via Last.fm) "
+        .then(function (response) {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                return false;
+            }
+        })
+        .then(function (data) {
+            var Artists = "The Current Top 10 Artists (Served via Last.fm) "
 
-        var idArtist0 = data.artists.artist[0].name + " has " + data.artists.artist[0].playcount + " plays and " + data.artists.artist[0].listeners + " listeners!";
+            var idArtist0 = data.artists.artist[0].name + " has " + data.artists.artist[0].playcount + " plays and " + data.artists.artist[0].listeners + " listeners!";
 
-        var idArtist1 = data.artists.artist[1].name + " has " + data.artists.artist[1].playcount + " plays and " + data.artists.artist[1].listeners + " listeners!";
+            var idArtist1 = data.artists.artist[1].name + " has " + data.artists.artist[1].playcount + " plays and " + data.artists.artist[1].listeners + " listeners!";
 
-        var idArtist2 = data.artists.artist[2].name + " has " + data.artists.artist[2].playcount + " plays and " + data.artists.artist[2].listeners + " listeners!";
+            var idArtist2 = data.artists.artist[2].name + " has " + data.artists.artist[2].playcount + " plays and " + data.artists.artist[2].listeners + " listeners!";
 
-        var idArtist3 = data.artists.artist[3].name + " has " + data.artists.artist[3].playcount + " plays and " + data.artists.artist[3].listeners + " listeners!";
+            var idArtist3 = data.artists.artist[3].name + " has " + data.artists.artist[3].playcount + " plays and " + data.artists.artist[3].listeners + " listeners!";
 
-        var idArtist4 = data.artists.artist[4].name + " has " + data.artists.artist[4].playcount + " plays and " + data.artists.artist[4].listeners + " listeners!";
+            var idArtist4 = data.artists.artist[4].name + " has " + data.artists.artist[4].playcount + " plays and " + data.artists.artist[4].listeners + " listeners!";
 
-        var idArtist5 = data.artists.artist[5].name + " has " + data.artists.artist[5].playcount + " plays and " + data.artists.artist[5].listeners + " listeners!";
+            var idArtist5 = data.artists.artist[5].name + " has " + data.artists.artist[5].playcount + " plays and " + data.artists.artist[5].listeners + " listeners!";
 
-        var idArtist6 = data.artists.artist[6].name + " has " + data.artists.artist[6].playcount + " plays and " + data.artists.artist[6].listeners + " listeners!";
+            var idArtist6 = data.artists.artist[6].name + " has " + data.artists.artist[6].playcount + " plays and " + data.artists.artist[6].listeners + " listeners!";
 
-        var idArtist7 = data.artists.artist[7].name + " has " + data.artists.artist[7].playcount + " plays and " + data.artists.artist[7].listeners + " listeners!";
+            var idArtist7 = data.artists.artist[7].name + " has " + data.artists.artist[7].playcount + " plays and " + data.artists.artist[7].listeners + " listeners!";
 
-        var idArtist8 = data.artists.artist[8].name + " has " + data.artists.artist[8].playcount + " plays and " + data.artists.artist[8].listeners + " listeners!";
+            var idArtist8 = data.artists.artist[8].name + " has " + data.artists.artist[8].playcount + " plays and " + data.artists.artist[8].listeners + " listeners!";
 
-        var idArtist9 = data.artists.artist[9].name + " has " + data.artists.artist[9].playcount + " plays and " + data.artists.artist[9].listeners + " listeners!";
+            var idArtist9 = data.artists.artist[9].name + " has " + data.artists.artist[9].playcount + " plays and " + data.artists.artist[9].listeners + " listeners!";
 
-        topArtistsLeft.appendChild(createP("", Artists, "Large"));
+            topArtistsLeft.appendChild(createP("", Artists, "Large"));
 
-        topArtistsLeft.appendChild(createP("", idArtist0, "small"));
+            topArtistsLeft.appendChild(createP("", idArtist0, "small"));
 
-        topArtistsLeft.appendChild(createP("", idArtist1, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist2, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist3, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist4, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist5, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist6, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist7, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist8, "small"));
-        
-        topArtistsLeft.appendChild(createP("", idArtist9, "small"));
-    });
+            topArtistsLeft.appendChild(createP("", idArtist1, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist2, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist3, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist4, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist5, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist6, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist7, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist8, "small"));
+            
+            topArtistsLeft.appendChild(createP("", idArtist9, "small"));
+        });
 }
-// local storage
-// function save() {
-//     var newdata = bandInput.value();
-//     console.log(newdata);
-//     if (localStorage.getItem('data') == null){
-//         localStorage.setItem('data', '[]');
-// }
 
-//     var olddata = json.parse(localStorage.getItem('data'));
-//     olddata.push(newdata);
-//     localStorage.setItem('data', json.stringfy(olddata));
-   
-// }
-//  save
- console.log(localStorage)
+
 
 function createP(title, name, size) {
     let p = document.createElement('p');

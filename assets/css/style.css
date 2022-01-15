@@ -57,14 +57,11 @@ h1 {
 
 }
 
-#previous-searches img {
-   width: 30px;
-    
-}
 
-#previous-searches div {
-    display: flex;
-    /* flex-direction: column; */
-    /* justify-content: center; */
+#previous-searches p {
+
+    margin: 0;
+    /* background-color: #00338844; */
+
 }
 

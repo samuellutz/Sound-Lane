@@ -14,15 +14,21 @@ var previousSearches = [];
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
-previousSearchesEl.addEventListener('click', function(e) {
-    clearArtist();
-    findArtist(e.target.textContent);
+previousSearchesEl.addEventListener('click', function(e) {   
+    
+    if (e.target.classList.contains("searchable")) {
+        clearArtist();
+        findArtist(e.target.textContent);
+    }   
 });
 
 if (localStorage.getItem('previousSearches')) {
     previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
+    previousSearchesEl.appendChild(createP('','Recent Searches', 'medium'));
     for (i of previousSearches) {
-        previousSearchesEl.appendChild(createP('', i));
+        var searchItem = createP('', i);
+        searchItem.classList.add("searchable");
+        previousSearchesEl.appendChild(searchItem);
         
     }
     
@@ -38,6 +44,7 @@ function clearArtist() {
         albumsEl.innerHTML= '';
         photosEl.innerHTML= '';
         previousSearchesEl.innerHTML= '';
+        topArtistsLeft.innerHTML='';
         if (albumCarousel) albumCarousel.destroy();
         if (photosCarousel) photosCarousel.destroy();
         
@@ -75,11 +82,14 @@ function findArtist(artist) {
 
             //These variables are assigned the key values in the api's so that they can populate the elements that will be created.
             var name = data.artists[0].strArtist;
-            if (name) {
-                if (previousSearches.length >= 10) previousSearches.pop();
-                previousSearches.push(name);
-                localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
-                
+            if (name) {  //adds previous searches to array and saves to local storage
+                var indexOfCurrentSearch = previousSearches.indexOf(name);
+                if (indexOfCurrentSearch > -1) {  //removes other instances of current search
+                    previousSearches.splice(indexOfCurrentSearch, 1);
+                }                
+                if (previousSearches.length >= 5) previousSearches.pop(); 
+                previousSearches.unshift(name);
+                localStorage.setItem("previousSearches", JSON.stringify(previousSearches));               
             }
             
 
@@ -198,7 +208,7 @@ function topArtist() {
 
             var idArtist9 = data.artists.artist[9].name + " has " + data.artists.artist[9].playcount + " plays and " + data.artists.artist[9].listeners + " listeners!";
 
-            topArtistsLeft.appendChild(createP("", Artists, "Large"));
+            topArtistsLeft.appendChild(createP("", Artists, "medium"));
 
             topArtistsLeft.appendChild(createP("", idArtist0, "small"));
 

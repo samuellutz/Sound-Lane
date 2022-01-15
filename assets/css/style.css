@@ -39,7 +39,9 @@ div {
 .large {
     font-size: 5rem;
 }
-
+.medium {
+    font-size: 2.3rem;
+}
 
 #albums {
     border-radius: 0px;
@@ -58,7 +60,7 @@ h1 {
 }
 
 
-#previous-searches p {
+#previous-searches p, #topArtistsLeft p {
 
     margin: 0;
     /* background-color: #00338844; */

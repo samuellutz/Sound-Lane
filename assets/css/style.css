@@ -41,10 +41,19 @@ div {
 }
 
 
+#albums {
+    border-radius: 0px;
+}
+
+h1 {
+    padding-left: 17px;
+}
+
 
 .glider-slide  {
     text-align: center;
     padding: 0 10px 0 10px;
+
 
 }
 

@@ -15,7 +15,7 @@ var previousSearches = [];
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
 previousSearchesEl.addEventListener('click', function(e) {   
-    
+
     if (e.target.classList.contains("searchable")) {
         clearArtist();
         findArtist(e.target.textContent);
@@ -43,11 +43,7 @@ function clearArtist() {
         right.innerHTML= '';
         albumsEl.innerHTML= '';
         photosEl.innerHTML= '';
-        previousSearchesEl.innerHTML= '';
-        topArtistsLeft.innerHTML='';
-        if (albumCarousel) albumCarousel.destroy();
-        if (photosCarousel) photosCarousel.destroy();
-        
+        previousSearchesEl.innerHTML= '';        
     } else {
         searchArtist;
     }
@@ -208,27 +204,27 @@ function topArtist() {
 
             var idArtist9 = data.artists.artist[9].name + " has " + data.artists.artist[9].playcount + " plays and " + data.artists.artist[9].listeners + " listeners!";
 
-            topArtistsLeft.appendChild(createP("", Artists, "medium"));
+            albumsEl.appendChild(createP("", Artists, "medium"));
 
-            topArtistsLeft.appendChild(createP("", idArtist0, "small"));
+            albumsEl.appendChild(createP("", idArtist0, "small"));
 
-            topArtistsLeft.appendChild(createP("", idArtist1, "small"));
+            albumsEl.appendChild(createP("", idArtist1, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist2, "small"));
+            albumsEl.appendChild(createP("", idArtist2, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist3, "small"));
+            albumsEl.appendChild(createP("", idArtist3, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist4, "small"));
+            albumsEl.appendChild(createP("", idArtist4, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist5, "small"));
+            albumsEl.appendChild(createP("", idArtist5, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist6, "small"));
+            albumsEl.appendChild(createP("", idArtist6, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist7, "small"));
+            albumsEl.appendChild(createP("", idArtist7, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist8, "small"));
+            albumsEl.appendChild(createP("", idArtist8, "small"));
             
-            topArtistsLeft.appendChild(createP("", idArtist9, "small"));
+            albumsEl.appendChild(createP("", idArtist9, "small"));
         });
 }
 

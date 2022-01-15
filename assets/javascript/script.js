@@ -5,12 +5,27 @@ var right = document.getElementById("right");
 var concerts = document.getElementById("concerts");
 var albumsEl = document.getElementById('albums');
 var photosEl = document.getElementById('photos');
+var previousSearchesEl = document.getElementById('previous-searches');
 var albumCarousel;
 var photosCarousel;
+var previousSearches = [];
 
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
+previousSearchesEl.addEventListener('click', function(e) {
+    console.log(e.target);
+});
+
+if (localStorage.getItem('previousSearches')) {
+    previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
+    for (i of previousSearches) {
+        previousSearchesEl.appendChild(createImg(i, ''));
+        
+    }
+    
+}
+
 
 
 
@@ -20,6 +35,7 @@ function clearArtist() {
         right.innerHTML= '';
         albumsEl.innerHTML= '';
         photosEl.innerHTML= '';
+        previousSearchesEl.innerHTML= '';
         if (albumCarousel) albumCarousel.destroy();
         if (photosCarousel) photosCarousel.destroy();
         
@@ -56,6 +72,12 @@ function findArtist(artist) {
 
             
             var name = data.artists[0].strArtist;
+            if (name) {
+                if (previousSearches.length >= 10) previousSearches.pop();
+                previousSearches.push(name);
+                localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
+                
+            }
             
 
             var started = data.artists[0].intBornYear;
@@ -76,10 +98,7 @@ function findArtist(artist) {
 
             console.log(data.artists[0]);
 
-            function savedata(artist){
-                localStorage.setItem("data", JSON.stringify(artist));
-            }
-           savedata(name); 
+            
 
             // left.appendChild(createP(id));
             left.appendChild(createP("", name, "large"));

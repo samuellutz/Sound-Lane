@@ -47,3 +47,15 @@ div {
     padding: 0 10px 0 10px;
 
 }
+
+#previous-searches img {
+   width: 30px;
+    
+}
+
+#previous-searches div {
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+}
+

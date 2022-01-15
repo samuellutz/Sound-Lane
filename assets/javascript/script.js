@@ -9,6 +9,7 @@ var previousSearchesEl = document.getElementById('previous-searches');
 var albumCarousel;
 var photosCarousel;
 var previousSearches = [];
+var previousSearchImg = [];
 
 
 
@@ -24,9 +25,10 @@ previousSearchesEl.addEventListener('click', function(e) {
 
 if (localStorage.getItem('previousSearches')) {
     previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
+    previousSearchImg = JSON.parse(localStorage.getItem('previousSearchImg'));
     previousSearchesEl.appendChild(createP('','Recent Searches', 'medium'));
-    for (i of previousSearches) {
-        var searchItem = createP('', i);
+    for (i in previousSearches) {
+        var searchItem = createImg(previousSearches[i], previousSearchImg[i]);
         searchItem.classList.add("searchable");
         previousSearchesEl.appendChild(searchItem);
         
@@ -78,22 +80,6 @@ function findArtist(artist) {
 
             //These variables are assigned the key values in the api's so that they can populate the elements that will be created.
             var name = data.artists[0].strArtist;
-            if (name) {  //adds previous searches to array and saves to local storage
-                var indexOfCurrentSearch = previousSearches.indexOf(name);
-                if (indexOfCurrentSearch > -1) {  //removes other instances of current search
-                    previousSearches.splice(indexOfCurrentSearch, 1);
-                }                
-                if (previousSearches.length >= 5) previousSearches.pop(); 
-                previousSearches.unshift(name);
-                localStorage.setItem("previousSearches", JSON.stringify(previousSearches));               
-            }
-            
-
-            var started = data.artists[0].intBornYear;
-            var bio = data.artists[0].strBiographyEN;
-            var genre = data.artists[0].strGenre;
-            var site = data.artists[0].strWebsite;
-            var place = data.artists[0].strCountry;
             var image = [data.artists[0].strArtistFanart, 
                 data.artists[0].strArtistFanart2, 
                 data.artists[0].strArtistFanart3,
@@ -102,6 +88,29 @@ function findArtist(artist) {
                 data.artists[0].strArtistWideThumb,
                 data.artists[0].strArtistClearart,
             ];
+            if (name) {  //adds previous searches to array and saves to local storage
+                var indexOfCurrentSearch = previousSearches.indexOf(name);
+                if (indexOfCurrentSearch > -1) {  //removes other instances of current search
+                    previousSearches.splice(indexOfCurrentSearch, 1);
+                    previousSearchImg.splice(indexOfCurrentSearch, 1);
+                }                
+                if (previousSearches.length >= 5) {
+                    previousSearches.pop(); 
+                    previousSearchImg.pop();
+                } 
+                previousSearches.unshift(name);
+                previousSearchImg.unshift(image[0]);
+                localStorage.setItem("previousSearches", JSON.stringify(previousSearches));        
+                localStorage.setItem("previousSearchImg", JSON.stringify(previousSearchImg));          
+            }
+            
+
+            var started = data.artists[0].intBornYear;
+            var bio = data.artists[0].strBiographyEN;
+            var genre = data.artists[0].strGenre;
+            var site = data.artists[0].strWebsite;
+            var place = data.artists[0].strCountry;
+            
             var logo = data.artists[0].strArtistBanner;
 
 

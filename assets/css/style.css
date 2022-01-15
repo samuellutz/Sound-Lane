@@ -66,14 +66,49 @@ h1 {
 }
 
 
-#previous-searches p, #albums p {
+#previous-searches p, #top-artist p {
 
     margin: 0;
     /* background-color: #00338844; */
+    
 
+}
+#previous-searches span {
+    pointer-events: none;
+}
+
+#previous-searches {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* padding: 100px; */
 }
 
 #previous-searches img {
-    width: 80px;
+    height: 30px;
+    width: auto;
+    pointer-events: none;
 }
+
+#previous-searches div {
+    display: flex;
+    /* flex-direction: column; */
+    background-color: #00338844;
+    border: 1px solid #00338844; 
+    margin: 3px;
+    /* margin-left: 10px; */
+    /* width: 50%; */
+}
+
+#top-artist {
+    background-color: #00338844;
+    padding-left: 10px;
+    border: 1px solid #00338844; 
+    /* width: ; */
+}
+
+
+
+
+
 

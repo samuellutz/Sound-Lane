@@ -78,7 +78,7 @@ function findArtist(artist) {
             var getAlbumAPI = "https://theaudiodb.com/api/v1/json/2/album.php?i=" + id; //While the first api call finds AudioDB's unique ID associated with the artist
             //this api call uses that ID to find album information not available in the first api call.
 
-
+//
             //These variables are assigned the key values in the api's so that they can populate the elements that will be created.
             var name = data.artists[0].strArtist;
             var image = [data.artists[0].strArtistFanart, 

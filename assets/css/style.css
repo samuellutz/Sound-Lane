@@ -30,6 +30,7 @@ a {
 } */
 
 .container {
+    margin-top: 20px;
     padding: 20px;
     /* background-color: #00338844; */
     background-image: linear-gradient(#000e25, #000d24);
@@ -66,10 +67,55 @@ h1 {
 }
 
 
-#previous-searches p, #albums p {
+#previous-searches p, #top-artist p {
 
     margin: 0;
     /* background-color: #00338844; */
+    
 
 }
+#previous-searches span {
+    pointer-events: none;
+    margin-left: 10px;
+    margin-top: 2%;
+    /* background-color: #00338844; */
+    /* justify-content: center; */
+    /* text-align: center; */
+}
+
+#previous-searches {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* padding: 100px; */
+}
+
+#previous-searches img {
+    height: 30px;
+    width: auto;
+    pointer-events: none;
+}
+
+#previous-searches div , button{
+    
+    /* flex-direction: column; */
+    background-color: #00338844;
+    border: 1px solid #00338844; 
+    border-radius: 0;
+    color: #ffffff;
+    margin-left: 10px;
+    /* width: 50%; */
+}
+
+#previous-searches div {
+    display: flex; 
+    margin: 3px;
+    
+}
+
+
+
+
+
+
 

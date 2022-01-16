@@ -6,6 +6,7 @@ var right = document.getElementById("right");
 var concerts = document.getElementById("concerts");
 var albumsEl = document.getElementById('albums');
 var photosEl = document.getElementById('photos');
+var metricEL = document.getElementById('artistmetrics');
 var previousSearchesEl = document.getElementById('previous-searches');
 var albumCarousel;
 var photosCarousel;
@@ -16,6 +17,7 @@ var previousSearchImg = [];
 
 bandSearch.addEventListener('submit',searchArtist);
 bandSearch.addEventListener('submit',clearArtist);
+
 previousSearchesEl.addEventListener('click', function(e) {  
 
     if (e.target.classList.contains("searchable")) {
@@ -58,6 +60,7 @@ function searchArtist(event) {
     var artist = bandInput.value; //This is the search form input that will be used to find the artist's data set
     if (artist) {
         findArtist(artist);
+        searchMetrics(artist);
     }
 }
 function findArtist(artist) {
@@ -179,6 +182,32 @@ function findAlbums(ApiURL) {
             
         });
 
+}
+
+function searchMetrics(artist) {
+    var metricsUrl = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artist + "&api_key=95c7da27b614e57e3a2f50c72aacec42&format=json";
+    
+    fetch(metricsUrl)
+        .then(function (response) {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                return false;
+            }
+        })
+        .then(function (data) {
+            var artMet0 = data.topalbums.album[0].name + " with " + data.topalbums.album[0].playcount + " listens";
+            var artMet1 = data.topalbums.album[1].name + " with " + data.topalbums.album[1].playcount + " listens";
+            var artMet2 = data.topalbums.album[2].name + " with " + data.topalbums.album[2].playcount + " listens";
+            var artMet3 = data.topalbums.album[3].name + " with " + data.topalbums.album[3].playcount + " listens";
+            var artMet4 = data.topalbums.album[4].name + " with " + data.topalbums.album[4].playcount + " listens";
+            
+            metricEL.appendChild(createP("", artMet0, "small"));
+            metricEL.appendChild(createP("", artMet1, "small"));
+            metricEL.appendChild(createP("", artMet2, "small"));
+            metricEL.appendChild(createP("", artMet3, "small"));
+            metricEL.appendChild(createP("", artMet4, "small"));
+        })
 }
 
 function topArtist() {

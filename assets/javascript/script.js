@@ -48,7 +48,9 @@ function clearArtist() {
         right.innerHTML= '';
         topArtistEl.innerHTML= '';
         photosEl.innerHTML= '';
-        previousSearchesEl.innerHTML= '';        
+        previousSearchesEl.innerHTML= '';
+        metricEL.innerHTML= '';   
+        albumsEl.innerHTML='';     
     } else {
         searchArtist;
     }

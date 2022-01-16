@@ -39,6 +39,6 @@ This project is licensed under the MIT License
 
 ## Acknowledgments
 
-* Hat tip to skeleton frameworks, Theudiodb.com api,
+* Hat tip to skeleton frameworks, Theudiodb.com api, Last.fm API, glider.js.
 * Inspiration
 * etc

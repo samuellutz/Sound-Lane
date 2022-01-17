@@ -23,6 +23,7 @@ previousSearchesEl.addEventListener('click', function(e) {
     if (e.target.classList.contains("searchable")) {
         clearArtist();
         findArtist(e.target.querySelector('span').textContent);
+        searchMetrics(e.target.querySelector('span').textContent);
     }   
 });
 
@@ -205,7 +206,7 @@ function searchMetrics(artist) {
             var artMet3 = data.topalbums.album[3].name + " with " + data.topalbums.album[3].playcount + " listens";
             var artMet4 = data.topalbums.album[4].name + " with " + data.topalbums.album[4].playcount + " listens";
 
-            metricEL.appendChild(createP("",artMetTitle, "medium" ))
+            metricEL.appendChild(createP("",artMetTitle, "small" ))
             
             metricEL.appendChild(createP("", artMet0, "small"));
             
@@ -230,7 +231,7 @@ function topArtist() {
             }
         })
         .then(function (data) {
-            var Artists = "The Current Top 10 Artists (Served via Last.fm) "
+            var Artists = "The Current Top 10 Artists"
 
             var idArtist0 = data.artists.artist[0].name + " has " + data.artists.artist[0].playcount + " plays and " + data.artists.artist[0].listeners + " listeners!";
 

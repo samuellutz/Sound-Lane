@@ -198,16 +198,23 @@ function searchMetrics(artist) {
             }
         })
         .then(function (data) {
+            var artMetTitle = "Top Albums by Popularity:"
             var artMet0 = data.topalbums.album[0].name + " with " + data.topalbums.album[0].playcount + " listens";
             var artMet1 = data.topalbums.album[1].name + " with " + data.topalbums.album[1].playcount + " listens";
             var artMet2 = data.topalbums.album[2].name + " with " + data.topalbums.album[2].playcount + " listens";
             var artMet3 = data.topalbums.album[3].name + " with " + data.topalbums.album[3].playcount + " listens";
             var artMet4 = data.topalbums.album[4].name + " with " + data.topalbums.album[4].playcount + " listens";
+
+            metricEL.appendChild(createP("",artMetTitle, "medium" ))
             
             metricEL.appendChild(createP("", artMet0, "small"));
+            
             metricEL.appendChild(createP("", artMet1, "small"));
+            
             metricEL.appendChild(createP("", artMet2, "small"));
+            
             metricEL.appendChild(createP("", artMet3, "small"));
+            
             metricEL.appendChild(createP("", artMet4, "small"));
         })
 }

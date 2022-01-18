@@ -14,6 +14,11 @@ One paragraph of project description goes here.
 
 * [See Live Site](https://samuellutz.github.io/Music-Project/)
 
+![link demo](https://user-images.githubusercontent.com/91674571/149679364-ede25e69-27c2-4d2c-bc6a-5262a254649f.gif)
+
+![Screenshot 2022-01-15 120320](https://user-images.githubusercontent.com/91674571/149679369-7dea2657-7e1a-4c0c-8218-c8f1bb4dec88.png)
+
+![album demo](https://user-images.githubusercontent.com/91674571/149679373-9fd35325-228c-40a4-b6e8-3e37b713a0cc.gif)
 
 ## Authors
 
@@ -39,6 +44,6 @@ This project is licensed under the MIT License
 
 ## Acknowledgments
 
-* Hat tip to skeleton frameworks, Theudiodb.com api,
+* Hat tip to skeleton frameworks, Theudiodb.com api, Last.fm API, glider.js.
 * Inspiration
 * etc

@@ -9,10 +9,15 @@ A web based service using API's to search for data on your favorite or new artis
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [skeleton CSS](http://getskeleton.com/)
+* 
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [glider.js](https://glidejs.com/docs/setup/)
+* ![glider](https://user-images.githubusercontent.com/91674571/150032288-28dd3e17-651b-48fd-b336-8df1414af138.png)
 * [TheAudioDB](https://www.theaudiodb.com/api_guide.php)
+* ![audiodb](https://user-images.githubusercontent.com/91674571/150032421-6c6cacd4-8064-4055-bbe4-926fb298547e.png)
 * [last.fm](https://www.last.fm/api/downloads)
+* ![lastfm](https://user-images.githubusercontent.com/91674571/150032388-c103ae3d-a70b-4773-9cd0-e7492f705e45.png)
+
 
 ## Deployed Link
 

@@ -1,7 +1,7 @@
-# Music-Project
+# Sound Lane
 
 
-One paragraph of project description goes here.
+A web based service using API's to search for data on your favorite or new artists you have just heard about. lets you search album data, bio, photos, top 10 artists, and links to streaming services to listen to them. Also gives you the option on page reload to research previous bands at the push of a button!
 
 
 ## Built With

@@ -11,6 +11,8 @@ A web based service using API's to search for data on your favorite or new artis
 * [skeleton CSS](http://getskeleton.com/)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [glider.js](https://glidejs.com/docs/setup/)
+* [TheAudioDB](https://www.theaudiodb.com/api_guide.php)
+* [last.fm](https://www.last.fm/api/downloads)
 
 ## Deployed Link
 

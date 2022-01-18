@@ -67,7 +67,7 @@ h1 {
 }
 
 
-#previous-searches p, #top-artist p {
+#previous-searches p, #top-artist p, #artistmetrics p{
 
     margin: 0;
     /* background-color: #00338844; */

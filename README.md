@@ -8,7 +8,9 @@ A web based service using API's to search for data on your favorite or new artis
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [skeleton CSS](http://getskeleton.com/)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [glider.js](https://glidejs.com/docs/setup/)
 
 ## Deployed Link
 

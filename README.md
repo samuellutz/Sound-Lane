@@ -21,7 +21,7 @@ A web based service using API's to search for data on your favorite or new artis
 
 ## Deployed Link
 
-* [See Live Site](https://samuellutz.github.io/Music-Project/)
+* [See Live Site](https://samuellutz.github.io/Sound-Lane/)
 
 ![link demo](https://user-images.githubusercontent.com/91674571/149679364-ede25e69-27c2-4d2c-bc6a-5262a254649f.gif)
 
